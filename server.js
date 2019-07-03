@@ -16,7 +16,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Location of api routes
-var routes = require("./routes/api-routes.js");
+// var routes = require("./routes/api-routes.js");
+const routes = require("./routes")
 app.use(routes);
 
 // Send every request to the React app
