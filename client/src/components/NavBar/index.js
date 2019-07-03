@@ -9,9 +9,7 @@ function Nav() {
           <li className="nav-item active">
             <a className="nav-link h5" href="/searchbooks">Search</a>
           </li>
-          <li className="nav-item active">
-            <a className="nav-link h5" href="#">|</a>
-          </li>
+          
           <li className="nav-item active">
             <a className="nav-link h5" href="/savedbooks">Saved</a>
           </li>

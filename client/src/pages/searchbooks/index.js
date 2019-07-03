@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "../../components/Grid";
-import { Input, TextArea, FormBtn } from "../../components/Form";
+import { Input, FormBtn } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron"
-import { List, ListItem } from "../../components/List"
+// import { List, ListItem } from "../../components/List"
 import API from "../../utils/API";
+import GoogleBook from "../../components/GoogleBook";
+import Wrapper from "../../components/Wrapper"
+// import { DocumentProvider } from "mongoose";
 
 
 class SearchBooks extends Component {
@@ -12,6 +15,12 @@ class SearchBooks extends Component {
         books: [],
         bookSearch: ""
     }
+
+    searchBooks = query => {
+        API.googleSearch(query)
+           .then(res => this.setState({ books: res.data.items }))
+           .catch(err => console.log(err));
+    };
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -22,9 +31,14 @@ class SearchBooks extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        API.getBooks(this.state.bookSearch)
-            .then(res => this.setState({ books: res.data }))
-            .catch(err => console.log(err));
+        this.searchBooks(this.state.bookSearch);
+    }
+
+    handleSubmitSave = event => {
+        event.preventDefault();
+        API.saveBook({
+            
+        })
     }
 
     render() {
@@ -43,13 +57,14 @@ class SearchBooks extends Component {
                             <p className="h6">Book</p>
                             <form>
                                 <Input
-                                    value={this.state.title}
+                                    value={this.state.bookSearch}
+                                    name="bookSearch"
                                     onChange={this.handleInputChange}
-                                    name="title"
+                                    type="text"
                                     placeholder="Title"
                                 />
                                 <FormBtn
-                                    disabled={!(this.state.title)}
+                                    disabled={!(this.state.bookSearch)}
                                     onClick={this.handleFormSubmit}
                                 >
                                     Search
@@ -58,9 +73,20 @@ class SearchBooks extends Component {
                         </Jumbotron>
                         <Jumbotron>
                             <span className="h5 align-text-top">Results</span>
-                            <List>
-                                
-                            </List>
+                            <Wrapper>
+                                {this.state.books.map(book => (<GoogleBook
+                                    id={book.id}
+                                    key={book.id}
+                                    title={book.volumeInfo.title}
+                                    authors={book.volumeInfo.authors}
+                                    description={book.volumeInfo.description}
+                                    thumbnail={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "https://dummyimage.com/100x200/fff/000000&text=No+Image"}
+                                    link={book.volumeInfo.infoLink}
+                                />))}
+                            </Wrapper>
+
+
+
                         </Jumbotron>
 
 
