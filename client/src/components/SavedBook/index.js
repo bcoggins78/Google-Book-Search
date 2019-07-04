@@ -1,6 +1,6 @@
 import React from "react";
 
-function GoogleBook(props) {
+function SavedBook(props) {
     
     return (
         <div className="row">
@@ -9,7 +9,7 @@ function GoogleBook(props) {
 
 
                 <div className="card col-2">
-                    <a href={props.link} target="_blank" rel="noopener noreferrer"><img className="card-image" src={props.thumbnail} alt={props.title} /></a>
+                    <a href={props.link} target="_blank" rel="noopener noreferrer"><img className="card-image" src={props.image} alt={props.title} /></a>
                         
                         
                     
@@ -23,7 +23,7 @@ function GoogleBook(props) {
                         Author: {props.authors}
                     </div>
                     <div>
-                    <button type="button" onClick={() => props.onSelect()} className="btn btn-primary">Save</button>
+                    <button type="button" onClick={() => props.onSelect()} className="btn btn-primary">Delete</button>
                     </div>
                 </div>
                 
@@ -34,4 +34,4 @@ function GoogleBook(props) {
     );
 }
 
-export default GoogleBook;
+export default SavedBook;

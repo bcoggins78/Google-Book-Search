@@ -2,14 +2,32 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron"
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
+import Wrapper from "../../components/Wrapper"
+import SavedBook from "../../components/SavedBook"
+// import { Link } from "react-router-dom";
 
 class SavedBooks extends Component {
 
     state = {
-
+        books: []
     }
 
+    // Runs the RandomDoctors array when component loads
+    componentDidMount = () => this.renderSavedBooks();
+
+    renderSavedBooks = () => {
+        API.getBooks()
+        .then(res =>
+            this.setState({ books: res.data })
+            )
+            .catch(err => console.log(err))
+    }
+
+    handleDeleteBook = id => {
+        API.deleteBook(id)
+            .then(res => this.renderSavedBooks())
+            .catch(err => console.log(err));
+    }
 
     render() {
         return (
@@ -23,6 +41,19 @@ class SavedBooks extends Component {
                        
                         <Jumbotron>
                             <span className="h5 align-text-top">Saved Books</span>
+                            <Wrapper>
+                                {this.state.books.map(book => (<SavedBook
+                                    id={book._id}
+                                    key={book._id}
+                                    title={book.title}
+                                    authors={book.authors}
+                                    description={book.description}
+                                    // thumbnail={book.thumbnail ? book.thumbnail : "https://dummyimage.com/100x200/fff/000000&text=No+Image"}
+                                    image={book.image}
+                                    link={book.infoLink}
+                                    onSelect={() => this.handleDeleteBook(book._id)}
+                                />))}
+                            </Wrapper>
                         </Jumbotron>
 
 

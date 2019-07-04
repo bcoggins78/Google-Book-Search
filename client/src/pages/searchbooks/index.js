@@ -13,7 +13,8 @@ class SearchBooks extends Component {
 
     state = {
         books: [],
-        bookSearch: ""
+        bookSearch: "",
+        book: ""
     }
 
     searchBooks = query => {
@@ -34,11 +35,23 @@ class SearchBooks extends Component {
         this.searchBooks(this.state.bookSearch);
     }
 
-    handleSubmitSave = event => {
-        event.preventDefault();
-        API.saveBook({
-            
-        })
+    handleSaveBook(bookData) {
+        console.log(bookData)
+        const book = {
+            gid: bookData.id,
+            title: bookData.volumeInfo.title,
+            authors: bookData.volumeInfo.authors,
+            description: bookData.volumeInfo.description,
+            image: bookData.volumeInfo.imageLinks.thumbnail,
+            link: bookData.volumeInfo.previewLink
+        };
+
+        API.saveBook(book)
+            .then(res => {
+                console.log(res);
+            }).catch(err => {
+                console.log(err);
+            })
     }
 
     render() {
@@ -75,6 +88,7 @@ class SearchBooks extends Component {
                             <span className="h5 align-text-top">Results</span>
                             <Wrapper>
                                 {this.state.books.map(book => (<GoogleBook
+                                    gid={book.gid}
                                     id={book.id}
                                     key={book.id}
                                     title={book.volumeInfo.title}
@@ -82,6 +96,7 @@ class SearchBooks extends Component {
                                     description={book.volumeInfo.description}
                                     thumbnail={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "https://dummyimage.com/100x200/fff/000000&text=No+Image"}
                                     link={book.volumeInfo.infoLink}
+                                    onSelect={() => this.handleSaveBook(book)}
                                 />))}
                             </Wrapper>
 

@@ -4,30 +4,27 @@ var Schema = mongoose.Schema;
 
 var BookSchema = new Schema({
   
-  title: {
+  gid: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
-  author: {
+  title: {
     type: String,
     required: true
   },
+  authors: [{ type: String }],
   description: {
       type: String,
-      required: true
+      required: false
   },
   image: {
       type: String,
-      required: true
+      required: false
   },
   link: {
       type: String,
       required: true
-  },
-  saved: {
-      type: Boolean,
-      default: false
   }
 });
 
