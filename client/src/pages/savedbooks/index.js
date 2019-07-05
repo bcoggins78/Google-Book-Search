@@ -4,7 +4,6 @@ import Jumbotron from "../../components/Jumbotron"
 import API from "../../utils/API";
 import Wrapper from "../../components/Wrapper"
 import SavedBook from "../../components/SavedBook"
-// import { Link } from "react-router-dom";
 
 class SavedBooks extends Component {
 
@@ -40,26 +39,22 @@ class SavedBooks extends Component {
                         </Jumbotron>
                        
                         <Jumbotron>
-                            <span className="h5 align-text-top">Saved Books</span>
                             <Wrapper>
+                            <span className="h5 align-text-top">Saved Books</span>
                                 {this.state.books.map(book => (<SavedBook
                                     id={book._id}
                                     key={book._id}
                                     title={book.title}
                                     authors={book.authors}
                                     description={book.description}
-                                    // thumbnail={book.thumbnail ? book.thumbnail : "https://dummyimage.com/100x200/fff/000000&text=No+Image"}
-                                    image={book.image}
-                                    link={book.infoLink}
+                                    image={book.image ? book.image : "https://dummyimage.com/100x200/fff/000000&text=No+Image"}
+                                    link={book.link}
                                     onSelect={() => this.handleDeleteBook(book._id)}
                                 />))}
                             </Wrapper>
                         </Jumbotron>
-
-
                     </Col>
                 </Row>
-
             </Container>
         )
     }
