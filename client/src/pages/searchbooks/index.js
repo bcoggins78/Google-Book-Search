@@ -2,12 +2,9 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 import Jumbotron from "../../components/Jumbotron"
-// import { List, ListItem } from "../../components/List"
 import API from "../../utils/API";
 import GoogleBook from "../../components/GoogleBook";
 import Wrapper from "../../components/Wrapper"
-// import { DocumentProvider } from "mongoose";
-
 
 class SearchBooks extends Component {
 
@@ -19,8 +16,8 @@ class SearchBooks extends Component {
 
     searchBooks = query => {
         API.googleSearch(query)
-           .then(res => this.setState({ books: res.data.items }))
-           .catch(err => console.log(err));
+            .then(res => this.setState({ books: res.data.items }))
+            .catch(err => console.log(err));
     };
 
     handleInputChange = event => {
@@ -33,7 +30,10 @@ class SearchBooks extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         this.searchBooks(this.state.bookSearch);
+        this.clearSearch()
     }
+
+    clearSearch = () => this.setState({ bookSearch: "" });
 
     handleSaveBook(bookData) {
         console.log(bookData)
@@ -60,8 +60,8 @@ class SearchBooks extends Component {
                 <Row>
                     <Col size="md-12">
                         <Jumbotron>
-                            <h1 className="display-4 text-center">(React) Google Books Search</h1>
-                            <h3 className="display-5 text-center">Search for and Save Books of Interest</h3>
+                                <h1 className="display-4 text-center">(React) Google Books Search</h1>
+                                <h3 className="display-5 text-center">Search for and Save Books of Interest</h3>
                         </Jumbotron>
                         <Jumbotron>
                             <span className="h5 align-text-top">Book Search</span>
@@ -85,8 +85,8 @@ class SearchBooks extends Component {
                             </form>
                         </Jumbotron>
                         <Jumbotron>
-                            <span className="h5 align-text-top">Results</span>
                             <Wrapper>
+                                <span className="h5 align-text-top">Results</span>
                                 {this.state.books.map(book => (<GoogleBook
                                     gid={book.gid}
                                     id={book.id}
@@ -99,15 +99,9 @@ class SearchBooks extends Component {
                                     onSelect={() => this.handleSaveBook(book)}
                                 />))}
                             </Wrapper>
-
-
-
                         </Jumbotron>
-
-
                     </Col>
                 </Row>
-
             </Container>
         )
     }
