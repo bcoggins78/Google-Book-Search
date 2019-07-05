@@ -3,32 +3,28 @@ import React from "react";
 function GoogleBook(props) {
     
     return (
-        <div className="row">
-
-            <div className="card-group">
-
-
-                <div className="card col-2">
-                    <a href={props.link} target="_blank" rel="noopener noreferrer"><img className="card-image" src={props.thumbnail} alt={props.title} /></a>
-                        
-                        
-                    
+        
+        <div className="row w-100">
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-12 mt-3">
+                        <div className="card ">
+                            <div className="card-horizontal">
+                                <div className="img-square-wrapper">
+                                    <a href={props.link} target="_blank" rel="noopener noreferrer"><img className="" src={props.thumbnail} alt={props.title} title={props.title}/></a>
+                                </div>
+                                <div className="card-body">
+                                    <h4 className="card-title">{props.title}</h4>
+                                    <p className="card-text">{props.description}</p>
+                                </div>
+                            </div>
+                            <div className="card-footer">
+                                <small className="text-muted">Author: {props.authors ? props.authors.join(', '): 'n/a'}</small>
+                                <button type="button" onClick={() => props.onSelect()} className="btn btn-primary float-right">Save</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="card col-10">
-                    <div className="card-body">
-                        <h4 className="card-title">{props.title}</h4>
-                        <p className="card-text">{props.description}</p>
-                    </div>
-                    <div className="card-footer">
-                        Author: {props.authors}
-                    </div>
-                    <div>
-                    <button type="button" onClick={() => props.onSelect()} className="btn btn-primary">Save</button>
-                    </div>
-                </div>
-                
-
-
             </div>
         </div>
     );
