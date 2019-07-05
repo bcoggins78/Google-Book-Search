@@ -28,12 +28,13 @@ To view any saved books from prevous searches, click on the "Saved" button on th
 * Mongoose
 * Morgan
 ---
+Main Page
 ![screenshot](https://github.com/bcoggins78/Google-Book-Search/blob/master/client/public/screenshot1.jpg)
 
 ---
-
+Search Results
 ![screenshot](https://github.com/bcoggins78/Google-Book-Search/blob/master/client/public/screenshot2.jpg)
 
 ---
-
+Saved Books
 ![screenshot](https://github.com/bcoggins78/Google-Book-Search/blob/master/client/public/screenshot3.jpg)
