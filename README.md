@@ -27,7 +27,13 @@ To view any saved books from prevous searches, click on the "Saved" button on th
 * Express.js
 * Mongoose
 * Morgan
-
+---
 ![screenshot](https://github.com/bcoggins78/Google-Book-Search/blob/master/client/public/screenshot1.jpg)
+
+---
+
 ![screenshot](https://github.com/bcoggins78/Google-Book-Search/blob/master/client/public/screenshot2.jpg)
+
+---
+
 ![screenshot](https://github.com/bcoggins78/Google-Book-Search/blob/master/client/public/screenshot3.jpg)
